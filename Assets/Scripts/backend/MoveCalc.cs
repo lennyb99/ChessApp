@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class MoveCalc
      * - one forward diagonal, if field is occupied by opponents piece
      * - two forward, if white pawn on 2nd rank or black pawn on 7th rank, if both fields are free
      * 
+     * 
      * TODO: En Passant
      */
     private static List<(int, int)> getAllPossiblePawnMoves(int currentFile, int currentRank, bool isWhite, Dictionary<(int, int), int> boardStructure)
@@ -70,7 +72,7 @@ public class MoveCalc
         if (isWhite)
         {
             // One field forward 
-            if (checkField(currentFile, currentRank + 1, boardStructure) == 0) { // If Piece Identifier is 0 (null). Meaning that the field is free
+            if (checkField(currentFile, currentRank + 1, boardStructure) == 0 ) { // If Piece Identifier is 0 (null). Meaning that the field is free
                 possibleDestinationSquares.Add((currentFile, currentRank + 1));
             }
 
@@ -122,6 +124,43 @@ public class MoveCalc
             }
         }
 
+
+        return possibleDestinationSquares;
+    }
+
+    /*
+     * Similar to above, this gives out the Squares that a pawn faces without attacking
+     */
+    private static List<(int, int)> getAllSquaresThePawnGuards(int currentFile, int currentRank, bool isWhite, Dictionary<(int, int), int> boardStructure)
+    {
+        List<(int, int)> possibleDestinationSquares = new List<(int, int)>(); // A list to store all the possible Squares the pawn guards
+        if (isWhite)
+        {
+            // Diagonal left
+            if (currentFile != 1) // diagonal front left AND not on the a (1st) rank
+            {
+                possibleDestinationSquares.Add((currentFile - 1, currentRank + 1));
+            }
+
+            // Diagonal right
+            if (currentFile != 8)
+            {
+                possibleDestinationSquares.Add((currentFile + 1, currentRank + 1));
+            }
+        }else //isBlack
+        {
+            // Diagonal left
+            if (currentFile != 1) // diagonal front left AND not on the a (1st) rank
+            {
+                possibleDestinationSquares.Add((currentFile - 1, currentRank - 1));
+            }
+
+            // Diagonal right
+            if (currentFile != 8)
+            {
+                possibleDestinationSquares.Add((currentFile + 1, currentRank - 1));
+            }
+        }
 
         return possibleDestinationSquares;
     }
@@ -231,7 +270,7 @@ public class MoveCalc
                 break;
             }
         }
-        Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this rook");
+        //Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this rook");
         return possibleDestinationSquares;
     }
 
@@ -276,7 +315,7 @@ public class MoveCalc
                 possibleDestinationSquares.Add((fieldVar.Key.Item1, fieldVar.Key.Item2));
             }
         }
-        Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this knight");
+        //Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this knight");
         return possibleDestinationSquares;
     }
 
@@ -401,7 +440,7 @@ public class MoveCalc
         }
 
 
-        Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this bishop");
+        //Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this bishop");
         return possibleDestinationSquares;
     }
 
@@ -420,12 +459,12 @@ public class MoveCalc
     {
         List<(int, int)> possibleDestinationSquares = new List<(int, int)>(); // A list to store all the possible Squares in
 
-        Debug.Log("Asking for possible rook and bishop moves to calculate queen moves...");
+        //Debug.Log("Asking for possible rook and bishop moves to calculate queen moves...");
 
         possibleDestinationSquares.AddRange(getAllPossibleBishopMoves(currentFile, currentRank, isWhite, boardStructure));
         possibleDestinationSquares.AddRange(getAllPossibleRookMoves(currentFile, currentRank, isWhite, boardStructure));
 
-        Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this queen");
+        //Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this queen");
 
         return possibleDestinationSquares;
     }
@@ -510,26 +549,164 @@ public class MoveCalc
             }
         }
 
+        
 
-        Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this king");
+        
+
+        //Debug.Log("There were " + possibleDestinationSquares.Count + " possible moves for this king");
         return possibleDestinationSquares;
     }
 
-    private void UpdateCastlingInformation()
+    private static List<(int, int)> getAllSquaresTheKingGuards(int currentFile, int currentRank, bool isWhite, Dictionary<(int, int), int> boardStructure)
     {
+        List<(int, int)> possibleDestinationSquares = new List<(int, int)>();
+        
+        List<(int, int)> directions = new List<(int, int)>
+        {
+            (0,1), (1,1), (1,0), (1,-1), (0,-1), (-1, -1), (-1, 0),(-1, 1) // Clockwise movement around the kings position. Starting North
+        };
+        Dictionary<(int, int), int> fieldVars = new Dictionary<(int, int), int>();
+        foreach ((int, int) direction in directions)
+        {
+            fieldVars.Add((currentFile + direction.Item1, currentRank + direction.Item2), checkField(currentFile + direction.Item1, currentRank + direction.Item2, boardStructure));
+        }
+        foreach (KeyValuePair<(int, int), int> fieldVar in fieldVars)
+        {
+            if (fieldVar.Value == 0 ||      // Square is empty
+                (fieldVar.Value >= 20) && isWhite ||    // Square is occupied by black piece and knight is white
+                 fieldVar.Value < 20 && fieldVar.Value >= 10 && !isWhite) // Square is occupied by white piece and knight is black
+            {
+                possibleDestinationSquares.Add((fieldVar.Key.Item1, fieldVar.Key.Item2));
+            }
+        }
 
+        return possibleDestinationSquares;
+    }
+
+    public static bool CheckForWhiteKingInCheck(Dictionary<(int, int), int> boardStructure) {
+        foreach(KeyValuePair<(int,int), int> entry in boardStructure)
+        {
+            if(entry.Value == 15)
+            {
+                if (CheckIfSquareIsInCheck(entry.Key.Item1, entry.Key.Item2, boardStructure).Item2)
+                {
+                    Debug.Log("White king in check!");
+                    return CheckIfSquareIsInCheck(entry.Key.Item1, entry.Key.Item2, boardStructure).Item2;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static bool CheckForBlackKingInCheck(Dictionary<(int, int), int> boardStructure)
+    {
+        foreach (KeyValuePair<(int, int), int> entry in boardStructure)
+        {
+            if (entry.Value == 25)
+            {
+                if (CheckIfSquareIsInCheck(entry.Key.Item1, entry.Key.Item2, boardStructure).Item1)
+                {
+                    Debug.Log("Black king in check!");
+                    return CheckIfSquareIsInCheck(entry.Key.Item1, entry.Key.Item2, boardStructure).Item1;
+                }
+            }
+        }
+        return false;
     }
 
     /*
-        * Function returns Piece Identifier
-        * 
-        * white pawn: 10       black pawn: 21
-        * white bishop: 11     black bishop: 21
-        * white knight: 12     black knight: 22
-        * white rook: 13       black rook: 23
-        * white queen: 14      black queen: 24
-        * white king: 15       black king: 25
-        */
+     * This method checks for a given square on the board if any opponents pieces put them into check
+     * First bool: white pieces put this square into check (so black king cannot enter it or is in check if on it)
+     * Second bool: black pieces put this square into check (so white king cannot enter it or is in check if on it)
+     * 
+     * Note: At the moment inefficient since it should just give true as soon as it realizes a piece guarding that square. 
+     * TODO: Optimize
+     */
+    private static (bool,bool) CheckIfSquareIsInCheck(int file, int rank, Dictionary<(int, int), int> boardStructure)
+    {
+        HashSet<(int, int)> squaresInCheckByWhite = new HashSet<(int, int)>();
+        HashSet<(int, int)> squaresInCheckByBlack = new HashSet<(int, int)>();
+
+        bool whiteToCheck = false;
+        bool blackToCheck = false;
+
+        // Gather all of the squares that the opponent pieces are guarding at the moment
+        foreach (KeyValuePair<(int, int), int> entry in boardStructure)
+        {
+            switch (entry.Value)
+            {
+                case 20: // Pawn
+                    AddListToHashSet(squaresInCheckByBlack, getAllSquaresThePawnGuards(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+                case 21: // Bishop
+                    AddListToHashSet(squaresInCheckByBlack, getAllPossibleBishopMoves(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+                case 22: // Knight
+                    AddListToHashSet(squaresInCheckByBlack, getAllPossibleKnightMoves(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+                case 23: // Rook
+                    AddListToHashSet(squaresInCheckByBlack, getAllPossibleKnightMoves(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+                case 24: // Queen
+                    AddListToHashSet(squaresInCheckByBlack, getAllPossibleQueenMoves(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+                case 25: // King
+                    AddListToHashSet(squaresInCheckByBlack, getAllSquaresTheKingGuards(entry.Key.Item1, entry.Key.Item2, false, boardStructure));
+                    break;
+
+                case 10: // Pawn
+                    AddListToHashSet(squaresInCheckByWhite, getAllSquaresThePawnGuards(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+                case 11: // Bishop
+                    AddListToHashSet(squaresInCheckByWhite, getAllPossibleBishopMoves(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+                case 12: // Knight
+                    AddListToHashSet(squaresInCheckByWhite, getAllPossibleKnightMoves(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+                case 13: // Rook
+                    AddListToHashSet(squaresInCheckByWhite, getAllPossibleRookMoves(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+                case 14: // Queen
+                    AddListToHashSet(squaresInCheckByWhite, getAllPossibleQueenMoves(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+                case 15: // King
+                    AddListToHashSet(squaresInCheckByWhite, getAllSquaresTheKingGuards(entry.Key.Item1, entry.Key.Item2, true, boardStructure));
+                    break;
+            }
+        }
+
+        foreach (var square in squaresInCheckByWhite)
+        {
+            Debug.Log(square.Item1 + " " + square.Item2);
+            if (square.Item1 == file && square.Item2 == rank)
+            {
+                whiteToCheck = true;
+                break;
+            }
+        }
+
+        foreach (var square in squaresInCheckByBlack)
+        {
+            if (square.Item1 == file && square.Item2 == rank)
+            {
+                blackToCheck = true;
+                break;
+            }
+        }
+        Debug.Log(whiteToCheck+ " " +blackToCheck + " " +squaresInCheckByWhite.Count);
+        return (whiteToCheck, blackToCheck);
+    }
+
+    /*
+    * Function returns Piece Identifier
+    * 
+    * white pawn: 10       black pawn: 20
+    * white bishop: 11     black bishop: 21
+    * white knight: 12     black knight: 22
+    * white rook: 13       black rook: 23
+    * white queen: 14      black queen: 24
+    * white king: 15       black king: 25
+    */
     private static int checkField(int file, int rank, Dictionary<(int, int), int> boardStructure)
     {
         if (file < 1 || file > 8 || rank < 1 || rank > 8)
@@ -540,4 +717,15 @@ public class MoveCalc
         return boardStructure[(file, rank)];
     }
 
+    private static HashSet<(int, int)> AddListToHashSet(HashSet<(int, int)> h, List<(int, int)> l)
+    {
+        foreach(var entry in l)
+        {
+            h.Add(entry);
+        }
+        return h;
+    }
+
 }
+
+

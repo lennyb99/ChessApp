@@ -68,6 +68,8 @@ public class Board : MonoBehaviour
                         return;
                     }
 
+                    Debug.Log(MoveCalc.CheckForWhiteKingInCheck(boardStructure));
+                    Debug.Log(MoveCalc.CheckForBlackKingInCheck(boardStructure));
                     ExecuteMoveOnBoard(oldField, field, caller.gameObject.GetComponent<Piece>());
 
                     // If the moved piece was a king or a rook, modify the castling rights and perform castling if necessary. 
