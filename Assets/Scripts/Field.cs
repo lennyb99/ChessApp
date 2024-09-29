@@ -10,7 +10,20 @@ public class Field : MonoBehaviour {
 
     [SerializeField] private string color;
 
-    public GameObject currentPiece;
+    public GameObject currentGameObject;
+    public PieceInterface currentPiece;
+
+    [Header("Adjacent Fields")]
+    public Field topMid;
+    public Field topLeft;
+    public Field topRight;
+    public Field midLeft;
+    public Field midRight;
+    public Field bottomMid;
+    public Field bottomLeft;
+    public Field bottomRight;
+
+    
 
 
     void Start() {
@@ -28,10 +41,15 @@ public class Field : MonoBehaviour {
     public int getRank() { return rank; }
     public int getFile() { return file; }
 
-    public void SetCurrentPiece(GameObject piece)
+    public void SetCurrentGameobject(GameObject piece)
     {
-        this.currentPiece = piece;
+        this.currentGameObject = piece;
     }
 
-    public GameObject getCurrentPiece() { return currentPiece; }
+    public bool IsFieldGuarded(bool whiteGuarding)
+    {
+        return false;
+    }
+
+    public GameObject GetCurrentGameObject() { return currentGameObject; }
 }

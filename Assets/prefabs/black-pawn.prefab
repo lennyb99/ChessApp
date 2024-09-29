@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5542413239256769452}
   - component: {fileID: 3387544441065713462}
   - component: {fileID: -4404174612633644820}
+  - component: {fileID: 8670922567653938887}
   m_Layer: 0
   m_Name: black-pawn
   m_TagString: Piece
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20cbb7ddacd30741b729c3b2c169323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 0}
   currentField: {fileID: 0}
+--- !u!114 &8670922567653938887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2710569465285552553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbf7084f93eb124bbb3890bd33c11c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isWhite: 0
-  pieceIdentifier: 20
+  myMoveable: {fileID: 0}

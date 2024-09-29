@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2901340177794371189}
   - component: {fileID: 3509002649783740982}
   - component: {fileID: 4697666893214399176}
+  - component: {fileID: 2394365414920837919}
   m_Layer: 0
   m_Name: black-queen
   m_TagString: Piece
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20cbb7ddacd30741b729c3b2c169323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 0}
   currentField: {fileID: 0}
+--- !u!114 &2394365414920837919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754246090309560103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf88597c6025dfc498e4d54f226a3cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isWhite: 0
-  pieceIdentifier: 24
+  myMoveable: {fileID: 0}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7428483870884214261}
   - component: {fileID: 3922481461061639585}
   - component: {fileID: 1336336280356438172}
+  - component: {fileID: 2070309079606689622}
   m_Layer: 0
   m_Name: white-bishop
   m_TagString: Piece
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20cbb7ddacd30741b729c3b2c169323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 0}
   currentField: {fileID: 0}
+--- !u!114 &2070309079606689622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135709807942911347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95efe22cfef00ce4ca093e0cf24b847e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isWhite: 1
-  pieceIdentifier: 11
+  myMoveable: {fileID: 0}

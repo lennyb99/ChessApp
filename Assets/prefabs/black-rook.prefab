@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8447763633340697923}
   - component: {fileID: 3615643027598511965}
   - component: {fileID: -6235318028122768451}
-  - component: {fileID: -4672176045796030291}
+  - component: {fileID: 3739265952678052669}
+  - component: {fileID: 6519766110371321023}
   m_Layer: 0
   m_Name: black-rook
   m_TagString: Piece
@@ -131,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8782221, y: 0.9516432}
   m_EdgeRadius: 0
---- !u!114 &-4672176045796030291
+--- !u!114 &3739265952678052669
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20cbb7ddacd30741b729c3b2c169323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 0}
   currentField: {fileID: 0}
+--- !u!114 &6519766110371321023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8659494117873111053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f4ce0fb907bd04ca1bcc4107e0dde9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isWhite: 0
-  pieceIdentifier: 23
+  myMoveable: {fileID: 0}

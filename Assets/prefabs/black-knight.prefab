@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7452481612178777558}
   - component: {fileID: -4153155043488022901}
   - component: {fileID: 2695421590332422045}
+  - component: {fileID: -3323961346978773327}
   m_Layer: 0
   m_Name: black-knight
   m_TagString: Piece
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20cbb7ddacd30741b729c3b2c169323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 0}
   currentField: {fileID: 0}
+--- !u!114 &-3323961346978773327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250989692620102725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c82cf8364b2b68d4a987f44969fe2994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   isWhite: 0
-  pieceIdentifier: 22
+  myMoveable: {fileID: 0}
