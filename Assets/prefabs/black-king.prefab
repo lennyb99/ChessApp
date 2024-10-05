@@ -159,4 +159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 0
-  myMoveable: {fileID: 0}
+  myMoveable: {fileID: -7431574872223487353}
+  hasMoved: 0
+  isInCheck: 0

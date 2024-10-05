@@ -1,12 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Pawn : Piece, PieceInterface
 {
     bool enPassantTake = false;
+    
+    private GameObject panel;
+    public PromotePanel promotePanel;
 
+    public GameObject whiteQueen;
+    public GameObject whiteRook;
+    public GameObject whiteBishop;
+    public GameObject whiteKnight;
+    public GameObject blackQueen;
+    public GameObject blackRook;
+    public GameObject blackBishop;
+    public GameObject blackKnight;
+
+    void Start()
+    {
+        
+        panel = GameObject.Find("PromotePanel");
+        
+        if(panel != null)
+        {
+            promotePanel = panel.GetComponent<PromotePanel>();
+
+            promotePanel.DisablePromotePanel();
+        }
+        else
+        {
+            Debug.Log("PromotePanel was not found");
+        }
+    }
     public void HandleMovedPiece(Field targetField)
     {
         GameObject currentField = myMoveable.getCurrentField();
@@ -14,6 +44,12 @@ public class Pawn : Piece, PieceInterface
         {
             if (GetAllPossibleWhitePawnMoves(currentField).Contains(targetField))
             {
+                // Handling a Pawn reaching promoting square
+                if (targetField.GetComponent<Field>().getRank() == 8)
+                {
+                    promotePanel.EnablePromotePanel(this);
+                }
+
                 // Handling en passant capture
                 if (myMoveable.board.GetEnPassantPossible()) // checks if en passant is possible. Is yes, if last move a 2 step pawn move was made.
                 {
@@ -28,6 +64,7 @@ public class Pawn : Piece, PieceInterface
                         }
                     }
                 }
+
                 // Handling the enabling of en passant for after the move has been made.
                 if (currentField.GetComponent<Field>().getRank() == 2 && targetField.GetComponent<Field>().getRank() == 4)
                 {
@@ -38,8 +75,11 @@ public class Pawn : Piece, PieceInterface
                 {
                     myMoveable.board.SetEnPassantPossible(false);
                 }
+
                 // Having the move executed
                 ExecuteMove(targetField);
+
+
             }
             else
             {
@@ -50,6 +90,12 @@ public class Pawn : Piece, PieceInterface
         {
             if (GetAllPossibleBlackPawnMoves(currentField).Contains(targetField))
             {
+                // Handling a Pawn reaching promoting square
+                if (targetField.GetComponent<Field>().getRank() == 1)
+                {
+                    promotePanel.EnablePromotePanel(this);
+                }
+
                 // Handling en passant capture
                 if (myMoveable.board.GetEnPassantPossible()) // checks if en passant is possible. Is yes, if last move a 2 step pawn move was made.
                 {
@@ -212,5 +258,53 @@ public class Pawn : Piece, PieceInterface
         }
 
         return possibleFields;
+    }
+
+    
+    public void PromotePawn(char pieceType)
+    {
+        GameObject piece = null;
+        if (isWhite) { 
+            switch (pieceType)
+            {
+                case 'q':
+                    piece = Instantiate(whiteQueen, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'r':
+                    piece = Instantiate(whiteRook, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'b':
+                    piece = Instantiate(whiteBishop, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'k':
+                    piece = Instantiate(whiteKnight, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+            }
+        }
+        else
+        {
+            switch (pieceType)
+            {
+                case 'q':
+                    piece = Instantiate(blackQueen, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'r':
+                    piece = Instantiate(blackRook, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'b':
+                    piece = Instantiate(blackBishop, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+                case 'k':
+                    piece = Instantiate(blackKnight, new Vector3(myMoveable.currentField.transform.position.x, myMoveable.currentField.transform.position.y, myMoveable.currentField.transform.position.z - 1), Quaternion.identity);
+                    break;
+            }
+        }
+        if (piece != null)
+        {
+            piece.GetComponent<Piece>().myMoveable.SetCurrentField(myMoveable.currentField);
+            myMoveable.currentField.GetComponent<Field>().SetCurrentGameobject(piece);
+            myMoveable.RemovePiece();
+        }
+        
     }
 }

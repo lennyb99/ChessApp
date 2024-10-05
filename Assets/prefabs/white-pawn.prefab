@@ -159,4 +159,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 1
-  myMoveable: {fileID: 0}
+  myMoveable: {fileID: 3296549930857655319}
+  panel: {fileID: 0}
+  promotePanel: {fileID: 0}
+  whiteQueen: {fileID: 6494087882237598021, guid: 3b584417e9bb3dd4090d3664c66a48e6, type: 3}
+  whiteRook: {fileID: 4200262936351083824, guid: 878d3f5d903664a44993c3752e58d51f, type: 3}
+  whiteBishop: {fileID: 8135709807942911347, guid: 7839710b76b02ee439653f057b23a269, type: 3}
+  whiteKnight: {fileID: 2523280639987524381, guid: d136822dc175ece408205709a94138b2, type: 3}
+  blackQueen: {fileID: 7754246090309560103, guid: 8c5d9fb1c58410a4491f0d22e6364731, type: 3}
+  blackRook: {fileID: 8659494117873111053, guid: 05d8c05e93b8b18459373967b3d83e27, type: 3}
+  blackBishop: {fileID: 4596346580289798607, guid: 24e33e2c30c92e049b2b70e1ff0bf5d2, type: 3}
+  blackKnight: {fileID: 4250989692620102725, guid: 0e77b555ac7e40348814b4809080b19a, type: 3}

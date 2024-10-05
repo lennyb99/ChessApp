@@ -12,7 +12,6 @@ public class Piece : MonoBehaviour
     void Start()
     {
         myMoveable = GetComponent<Moveable>();
-
         if (myMoveable == null)
         {
             Debug.Log("Piece was not properly initialized.");

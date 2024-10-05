@@ -158,5 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14f4ce0fb907bd04ca1bcc4107e0dde9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentField: {fileID: 0}
   isWhite: 1
+  myMoveable: {fileID: 4918348685847079777}
+  hasMoved: 0
