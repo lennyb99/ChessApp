@@ -171,6 +171,7 @@ MonoBehaviour:
   rank: 3
   file: 3
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 504807217}
   topLeft: {fileID: 1771066784}
@@ -302,6 +303,7 @@ MonoBehaviour:
   rank: 6
   file: 1
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 968785086}
   topLeft: {fileID: 1575218915}
@@ -433,6 +435,7 @@ MonoBehaviour:
   rank: 8
   file: 6
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -564,6 +567,7 @@ MonoBehaviour:
   rank: 3
   file: 4
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 77641476}
   topLeft: {fileID: 504807217}
@@ -695,6 +699,7 @@ MonoBehaviour:
   rank: 6
   file: 2
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 82828134}
   topLeft: {fileID: 968785086}
@@ -826,6 +831,7 @@ MonoBehaviour:
   rank: 4
   file: 4
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 481436736}
   topLeft: {fileID: 101789504}
@@ -957,6 +963,7 @@ MonoBehaviour:
   rank: 7
   file: 2
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1865962180}
   topLeft: {fileID: 1778015710}
@@ -1088,6 +1095,7 @@ MonoBehaviour:
   rank: 5
   file: 3
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 270938588}
   topLeft: {fileID: 68608430}
@@ -1219,6 +1227,7 @@ MonoBehaviour:
   rank: 3
   file: 2
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1771066784}
   topLeft: {fileID: 1279498983}
@@ -1456,6 +1465,7 @@ MonoBehaviour:
   rank: 1
   file: 7
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1006230942}
   topLeft: {fileID: 1857823261}
@@ -2042,6 +2052,7 @@ MonoBehaviour:
   rank: 5
   file: 8
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 921932631}
   topLeft: {fileID: 464659204}
@@ -2173,6 +2184,7 @@ MonoBehaviour:
   rank: 2
   file: 4
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 50879082}
   topLeft: {fileID: 31282680}
@@ -2304,6 +2316,7 @@ MonoBehaviour:
   rank: 6
   file: 3
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 2067772623}
   topLeft: {fileID: 82828134}
@@ -2435,6 +2448,7 @@ MonoBehaviour:
   rank: 5
   file: 6
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 516077742}
   topLeft: {fileID: 529744377}
@@ -2744,6 +2758,7 @@ MonoBehaviour:
   rank: 2
   file: 2
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 136383243}
   topLeft: {fileID: 696402393}
@@ -2875,6 +2890,7 @@ MonoBehaviour:
   rank: 6
   file: 7
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1649924591}
   topLeft: {fileID: 779501200}
@@ -3006,6 +3022,7 @@ MonoBehaviour:
   rank: 1
   file: 2
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 389858608}
   topLeft: {fileID: 813911146}
@@ -3137,6 +3154,7 @@ MonoBehaviour:
   rank: 5
   file: 4
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 887383770}
   topLeft: {fileID: 270938588}
@@ -3268,6 +3286,7 @@ MonoBehaviour:
   rank: 4
   file: 3
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 101789504}
   topLeft: {fileID: 1978818443}
@@ -3399,6 +3418,7 @@ MonoBehaviour:
   rank: 6
   file: 6
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 779501200}
   topLeft: {fileID: 914748350}
@@ -3635,6 +3655,7 @@ MonoBehaviour:
   rank: 6
   file: 5
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 914748350}
   topLeft: {fileID: 1971237176}
@@ -3766,6 +3787,7 @@ MonoBehaviour:
   rank: 4
   file: 6
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 300022899}
   topLeft: {fileID: 1244688923}
@@ -3897,6 +3919,7 @@ MonoBehaviour:
   rank: 1
   file: 4
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 247781217}
   topLeft: {fileID: 1561945867}
@@ -4028,6 +4051,7 @@ MonoBehaviour:
   rank: 5
   file: 1
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 34146773}
   topLeft: {fileID: 1575218915}
@@ -4159,6 +4183,7 @@ MonoBehaviour:
   rank: 8
   file: 7
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -4290,6 +4315,7 @@ MonoBehaviour:
   rank: 3
   file: 1
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1279498983}
   topLeft: {fileID: 1575218915}
@@ -4421,6 +4447,7 @@ MonoBehaviour:
   rank: 7
   file: 6
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 44859278}
   topLeft: {fileID: 2096315130}
@@ -4552,6 +4579,7 @@ MonoBehaviour:
   rank: 2
   file: 1
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 696402393}
   topLeft: {fileID: 1575218915}
@@ -4817,6 +4845,7 @@ MonoBehaviour:
   rank: 1
   file: 8
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 930215492}
   topLeft: {fileID: 1006230942}
@@ -4948,6 +4977,7 @@ MonoBehaviour:
   rank: 6
   file: 4
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1971237176}
   topLeft: {fileID: 2067772623}
@@ -5079,6 +5109,7 @@ MonoBehaviour:
   rank: 1
   file: 1
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 813911146}
   topLeft: {fileID: 1575218915}
@@ -5210,6 +5241,7 @@ MonoBehaviour:
   rank: 7
   file: 5
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 2096315130}
   topLeft: {fileID: 1952911422}
@@ -5341,6 +5373,7 @@ MonoBehaviour:
   rank: 6
   file: 8
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1865178532}
   topLeft: {fileID: 1649924591}
@@ -5472,6 +5505,7 @@ MonoBehaviour:
   rank: 2
   file: 8
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1916106345}
   topLeft: {fileID: 1094124926}
@@ -5603,6 +5637,7 @@ MonoBehaviour:
   rank: 7
   file: 1
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1778015710}
   topLeft: {fileID: 1575218915}
@@ -5734,6 +5769,7 @@ MonoBehaviour:
   rank: 2
   file: 7
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1094124926}
   topLeft: {fileID: 1850464765}
@@ -5865,6 +5901,7 @@ MonoBehaviour:
   rank: 3
   file: 7
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1815405020}
   topLeft: {fileID: 576832256}
@@ -6263,6 +6300,7 @@ MonoBehaviour:
   rank: 4
   file: 8
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 235452210}
   topLeft: {fileID: 1859257979}
@@ -6394,6 +6432,7 @@ MonoBehaviour:
   rank: 5
   file: 5
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 529744377}
   topLeft: {fileID: 887383770}
@@ -6525,6 +6564,7 @@ MonoBehaviour:
   rank: 4
   file: 1
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 683925681}
   topLeft: {fileID: 1575218915}
@@ -6656,6 +6696,7 @@ MonoBehaviour:
   rank: 8
   file: 3
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -6787,6 +6828,7 @@ MonoBehaviour:
   rank: 1
   file: 3
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1561945867}
   topLeft: {fileID: 389858608}
@@ -6918,6 +6960,7 @@ MonoBehaviour:
   rank: 2
   file: 3
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 31282680}
   topLeft: {fileID: 136383243}
@@ -7203,6 +7246,7 @@ MonoBehaviour:
   rank: -1
   file: -1
   color: white
+  board: {fileID: 0}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 0}
   topLeft: {fileID: 0}
@@ -7417,6 +7461,7 @@ MonoBehaviour:
   rank: 1
   file: 5
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 2115337334}
   topLeft: {fileID: 247781217}
@@ -7548,6 +7593,7 @@ MonoBehaviour:
   rank: 7
   file: 7
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 690409038}
   topLeft: {fileID: 44859278}
@@ -7679,6 +7725,7 @@ MonoBehaviour:
   rank: 4
   file: 2
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1978818443}
   topLeft: {fileID: 683925681}
@@ -7810,6 +7857,7 @@ MonoBehaviour:
   rank: 8
   file: 1
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -8009,6 +8057,7 @@ MonoBehaviour:
   rank: 4
   file: 7
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1859257979}
   topLeft: {fileID: 300022899}
@@ -8140,6 +8189,7 @@ MonoBehaviour:
   rank: 3
   file: 6
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 576832256}
   topLeft: {fileID: 1952959337}
@@ -8271,6 +8321,7 @@ MonoBehaviour:
   rank: 2
   file: 6
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1850464765}
   topLeft: {fileID: 2022319785}
@@ -8402,6 +8453,7 @@ MonoBehaviour:
   rank: 5
   file: 7
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 464659204}
   topLeft: {fileID: 516077742}
@@ -8533,6 +8585,7 @@ MonoBehaviour:
   rank: 7
   file: 8
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1878854219}
   topLeft: {fileID: 690409038}
@@ -8664,6 +8717,7 @@ MonoBehaviour:
   rank: 8
   file: 2
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -8795,6 +8849,7 @@ MonoBehaviour:
   rank: 8
   file: 8
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -9060,6 +9115,7 @@ MonoBehaviour:
   rank: 3
   file: 8
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1229529863}
   topLeft: {fileID: 1815405020}
@@ -9325,6 +9381,7 @@ MonoBehaviour:
   rank: 8
   file: 4
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -9456,6 +9513,7 @@ MonoBehaviour:
   rank: 4
   file: 5
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1244688923}
   topLeft: {fileID: 481436736}
@@ -9587,6 +9645,7 @@ MonoBehaviour:
   rank: 7
   file: 4
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1952911422}
   topLeft: {fileID: 1350271812}
@@ -9718,6 +9777,7 @@ MonoBehaviour:
   rank: 5
   file: 2
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 68608430}
   topLeft: {fileID: 34146773}
@@ -9849,6 +9909,7 @@ MonoBehaviour:
   rank: 3
   file: 5
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1952959337}
   topLeft: {fileID: 77641476}
@@ -10064,6 +10125,7 @@ MonoBehaviour:
   rank: 1
   file: 6
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1857823261}
   topLeft: {fileID: 2115337334}
@@ -10195,6 +10257,7 @@ MonoBehaviour:
   rank: 7
   file: 3
   color: black
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1350271812}
   topLeft: {fileID: 1865962180}
@@ -10460,6 +10523,7 @@ MonoBehaviour:
   rank: 8
   file: 5
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 1575218915}
   topLeft: {fileID: 1575218915}
@@ -10591,6 +10655,7 @@ MonoBehaviour:
   rank: 2
   file: 5
   color: white
+  board: {fileID: 153504810}
   currentGameObject: {fileID: 0}
   topMid: {fileID: 2022319785}
   topLeft: {fileID: 50879082}

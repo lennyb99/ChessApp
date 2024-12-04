@@ -92,6 +92,7 @@ public class Moveable : MonoBehaviour
 
     public void RemovePiece()
     {
+        GameObject.Find("Board").GetComponent<Board>().UnregisterPiece(script);
         Destroy(this.gameObject);
     }
 

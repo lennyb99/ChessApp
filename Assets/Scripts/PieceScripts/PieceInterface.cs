@@ -7,4 +7,6 @@ public interface PieceInterface
     public bool IsWhite();
     public void HandleMovedPiece(Field targetField);
     void TakeThisPiece();
+
+    public bool AmIGuardingField(Field field, bool whiteGuarding);
 }

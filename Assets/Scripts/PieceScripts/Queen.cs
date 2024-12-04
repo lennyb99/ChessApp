@@ -5,14 +5,28 @@ using UnityEngine;
 
 public class Queen : Piece, PieceInterface
 {
-
+    private void Awake()
+    {
+        GameObject board = GameObject.Find("Board");
+        if (board != null)
+        {
+            board.GetComponent<Board>().RegisterPiece(this);
+        }
+    }
     public void HandleMovedPiece(Field targetField)
     {
+
+        if (!IsItMyTurn())
+        {
+            myMoveable.ResetPosition();
+            return;
+        }
+
         GameObject currentField = myMoveable.getCurrentField();
 
         if (GetAllPossibleQueenMoves(currentField).Contains(targetField))
         {
-            ExecuteMove(targetField);
+            ExecuteMove(targetField, true);
         }
         else
         {
@@ -47,12 +61,48 @@ public class Queen : Piece, PieceInterface
                                                                                               // Since NULLFIELDs cant be physically accessed, it shouldnt be a problem.
 
         // To Debug the possible Squares
-
+        /*
         foreach (var possibleField in possibleFields)
         {
             Debug.Log(possibleField.getFile() + " " + possibleField.getRank());
-        }
+        }*/
         return possibleFields;
+    }
+
+    public bool AmIGuardingField(Field field, bool whiteGuarding)
+    {
+        if (whiteGuarding != isWhite)
+        {
+            return false;
+        }
+
+        List<Field> guardingFields = new List<Field>();
+        Field tempCheckField = myMoveable.currentField.GetComponent<Field>();
+
+        List<Func<Field, Field>> directions = new List<Func<Field, Field>>
+        {
+            field => field.topLeft,
+            field => field.topRight,
+            field => field.bottomRight,
+            field => field.bottomLeft,
+
+            field => field.topMid,
+            field => field.bottomMid,
+            field => field.midLeft,
+            field => field.midRight,
+        };
+        foreach (var direction in directions)
+        {
+            GetAllGuardedFieldsTowardsDirection(direction, tempCheckField, guardingFields);
+            tempCheckField = myMoveable.currentField.GetComponent<Field>();
+        }
+
+        if (guardingFields.Contains(field))
+        {
+            return true;
+        }
+
+        return false;
     }
 
 }

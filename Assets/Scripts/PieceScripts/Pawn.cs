@@ -21,9 +21,17 @@ public class Pawn : Piece, PieceInterface
     public GameObject blackBishop;
     public GameObject blackKnight;
 
+    private void Awake()
+    {
+        GameObject board = GameObject.Find("Board");
+        if (board != null)
+        {
+            board.GetComponent<Board>().RegisterPiece(this);
+        }
+    }
     void Start()
     {
-        
+       
         panel = GameObject.Find("PromotePanel");
         
         if(panel != null)
@@ -39,6 +47,12 @@ public class Pawn : Piece, PieceInterface
     }
     public void HandleMovedPiece(Field targetField)
     {
+        if (!IsItMyTurn())
+        {
+            myMoveable.ResetPosition();
+            return;
+        }
+
         GameObject currentField = myMoveable.getCurrentField();
         if (isWhite)
         {
@@ -77,9 +91,7 @@ public class Pawn : Piece, PieceInterface
                 }
 
                 // Having the move executed
-                ExecuteMove(targetField);
-
-
+                ExecuteMove(targetField, true);
             }
             else
             {
@@ -119,7 +131,7 @@ public class Pawn : Piece, PieceInterface
                 {
                     myMoveable.board.SetEnPassantPossible(false);
                 }
-                ExecuteMove(targetField);
+                ExecuteMove(targetField, true);
             }
             else
             {
@@ -252,11 +264,12 @@ public class Pawn : Piece, PieceInterface
         }
 
         // To Debug the possible Squares
+        /*
         foreach (var possibleField in possibleFields)
         {
             Debug.Log(possibleField.getFile() + " " + possibleField.getRank());
         }
-
+        */
         return possibleFields;
     }
 
@@ -306,5 +319,35 @@ public class Pawn : Piece, PieceInterface
             myMoveable.RemovePiece();
         }
         
+    }
+    public bool AmIGuardingField(Field field, bool whiteGuarding)
+    {
+        if (whiteGuarding != isWhite)
+        {
+            return false;
+        }
+        if (isWhite) { 
+            if (myMoveable.currentField.GetComponent<Field>().topLeft == field)
+            {
+                return true;
+            }
+            else if (myMoveable.currentField.GetComponent<Field>().topRight == field)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (myMoveable.currentField.GetComponent<Field>().bottomLeft == field)
+            {
+                return true;
+            }
+            else if (myMoveable.currentField.GetComponent<Field>().bottomRight == field)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

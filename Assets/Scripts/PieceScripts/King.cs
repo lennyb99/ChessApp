@@ -5,26 +5,50 @@ using UnityEngine;
 public class King : Piece, PieceInterface
 {
     public bool hasMoved = false; // for castling
-    public bool isInCheck = false;
+    public bool inCheck = false;
+
+    private void Awake()
+    {
+        GameObject board = GameObject.Find("Board");
+        if (board != null)
+        {
+            board.GetComponent<Board>().RegisterPiece(this);
+        }
+    }
+
+    void Start()
+    {
+        myMoveable.board.ShareKingInformation(this, isWhite);
+    }
 
     public void HandleMovedPiece(Field targetField)
     {
+
+        if (!IsItMyTurn())
+        {
+            myMoveable.ResetPosition();
+            return;
+        }
+
         GameObject currentField = myMoveable.getCurrentField();
 
         if (GetAllPossibleKingMoves(currentField).Contains(targetField))
         {
             hasMoved = true;
-            if (currentField.GetComponent<Field>().midRight.midRight == targetField) // Detect short castle
+            if (whiteTurn && !whiteKing.inCheck || !whiteTurn && !blackKing.inCheck)
             {
-                Piece rook = currentField.GetComponent<Field>().midRight.midRight.midRight.GetCurrentGameObject().GetComponent<Piece>();
-                rook.ExecuteMove(currentField.GetComponent<Field>().midRight);
+                if (currentField.GetComponent<Field>().midRight.midRight == targetField) // Detect short castle
+                {
+                    Piece rook = currentField.GetComponent<Field>().midRight.midRight.midRight.GetCurrentGameObject().GetComponent<Piece>();
+                    rook.ExecuteMove(currentField.GetComponent<Field>().midRight, false);
+                }
+                if (currentField.GetComponent<Field>().midLeft.midLeft == targetField) // Detect long castle
+                {
+                    Piece rook = currentField.GetComponent<Field>().midLeft.midLeft.midLeft.midLeft.GetCurrentGameObject().GetComponent<Piece>();
+                    rook.ExecuteMove(currentField.GetComponent<Field>().midLeft, false);
+                }
             }
-            if (currentField.GetComponent<Field>().midLeft.midLeft == targetField) // Detect long castle
-            {
-                Piece rook = currentField.GetComponent<Field>().midLeft.midLeft.midLeft.midLeft.GetCurrentGameObject().GetComponent<Piece>();
-                rook.ExecuteMove(currentField.GetComponent<Field>().midLeft);
-            }
-            ExecuteMove(targetField);
+            ExecuteMove(targetField, true);
         }
         else
         {
@@ -84,7 +108,7 @@ public class King : Piece, PieceInterface
         List<Field> possibleFields = new List<Field>();
         Field myField = currentField.GetComponent<Field>();
 
-        if (!isInCheck && !hasMoved) {
+        if (!inCheck && !hasMoved) {
             // Castling long
             if (IsCastlingPossible(false, currentField))
             {
@@ -204,6 +228,15 @@ public class King : Piece, PieceInterface
             }
         }
 
+        // Subtract all squares that are covered by enemy pieces
+        for (int i = possibleFields.Count -1; i >= 0; i--)
+        {
+            if (possibleFields[i].IsFieldGuarded(!isWhite))
+            {
+                possibleFields.RemoveAt(i);
+            }
+        }
+
         // To Debug the possible Squares
         /*
         foreach (var possibleField in possibleFields)
@@ -211,8 +244,39 @@ public class King : Piece, PieceInterface
             Debug.Log(possibleField.getFile() + " " + possibleField.getRank());
         }
         */
-        // Subtract all squares that are covered by enemy pieces
+
 
         return possibleFields;
+    }
+
+    public bool IsInCheck()
+    {
+        if (myMoveable.currentField.GetComponent<Field>().IsFieldGuarded(!isWhite))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool AmIGuardingField(Field field, bool whiteGuarding)
+    {
+        if (whiteGuarding != isWhite)
+        {
+            return false;
+        }
+        Field currentField = myMoveable.currentField.GetComponent<Field>();
+        if(currentField.topMid == field ||
+            currentField.topRight == field ||
+            currentField.midRight == field ||
+            currentField.bottomRight == field ||
+            currentField.bottomMid == field ||
+            currentField.bottomLeft == field ||
+            currentField.midLeft == field ||
+            currentField.topLeft == field)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

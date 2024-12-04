@@ -5,6 +5,7 @@ using UnityEngine;
 public class Board : MonoBehaviour
 {
     [SerializeField] private List<Field> fields = new List<Field>();
+    private List<PieceInterface> pieces = new List<PieceInterface>();
 
     [SerializeField] private GameObject playerControlManagerObj;
     private PlayerControlManager playerControlManager;
@@ -29,11 +30,27 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         playerControlManager = playerControlManagerObj.GetComponent<PlayerControlManager>();
         if (playerControlManager == null)
         {
             Debug.Log("PlayerCtrlManager not initialized");
         }
+    }
+    public List<PieceInterface> GetAllPiecesOnBoard()
+    {
+        return pieces; 
+    }
+    public void RegisterPiece(PieceInterface newPiece)
+    {
+        pieces.Add(newPiece);
+        Debug.Log(pieces.Count);
+    }
+
+    public void UnregisterPiece(PieceInterface delPiece)
+    {
+        pieces.Remove(delPiece);
+        Debug.Log(pieces.Count);
     }
 
     public void AddMove()
@@ -64,6 +81,21 @@ public class Board : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void ShareKingInformation(King king, bool white)
+    {
+        foreach(Piece piece in pieces)
+        {
+            if (white)
+            {
+                piece.whiteKing = king;
+            }
+            else
+            {
+                piece.blackKing = king;
+            }
+        }
     }
 
     private Dictionary<(int, int), int> GetBoardStructure()

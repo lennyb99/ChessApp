@@ -10,6 +10,8 @@ public class Field : MonoBehaviour {
 
     [SerializeField] private string color;
 
+    public Board board;
+
     public GameObject currentGameObject;
     public PieceInterface currentPiece;
 
@@ -48,6 +50,17 @@ public class Field : MonoBehaviour {
 
     public bool IsFieldGuarded(bool whiteGuarding)
     {
+        if (board == null)
+        {
+            return false;
+        }
+        foreach (PieceInterface piece in board.GetAllPiecesOnBoard())
+        {
+            if (piece.AmIGuardingField(this, whiteGuarding))
+            {
+                return true;
+            }
+        }
         return false;
     }
 
